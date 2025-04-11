@@ -1,15 +1,8 @@
 [package]
-name = "particles"
+name = "run-test"
 version = "0.1.0"
 edition = "2024"
 
-
-
-[lib]
-
-path = "src/lib.rs"
-
 [dependencies]
 macroquad = "0.4.14"
-
-
+particles = {path = "../particles"}
