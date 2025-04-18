@@ -27,8 +27,8 @@ async fn main() {
 
     );
 
-    p1.set_velocity(Vec2 { x: 2.0, y: 0.0 });
-    p2.set_velocity(Vec2 { x: -4.0, y: 0.0 });
+    p1.set_velocity(Vec2 { x: 2.0, y: 3.0 });
+    p2.set_velocity(Vec2 { x: -4.0, y: -1.0 });
 
     
 
