@@ -1,6 +1,7 @@
 
-use particles::*;
+use particles::{Particle2D, vector2d::*};
 use macroquad::{prelude::{clear_background, draw_circle, next_frame, RED, WHITE}, time::{draw_fps, get_frame_time}, window::{screen_height, screen_width}};
+
 
 #[macroquad::main("Window")]
 async fn main() {
@@ -16,6 +17,7 @@ async fn main() {
         Vec2 { x: 0.0, y: 0.0},
         Vec2 { x: 0.0, y: 0.0 },
         20.0,
+        10.0,
 
     );
 
@@ -24,6 +26,7 @@ async fn main() {
         Vec2 { x: 0.0, y: 0.0},
         Vec2 { x: 0.0, y: 0.0 },
         20.0,
+        10.0,
 
     );
 
