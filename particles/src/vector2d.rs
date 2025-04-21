@@ -1,4 +1,4 @@
-use std::ops::{Add, Mul};
+use std::{fmt::Display, ops::{Add, Div, Mul}};
 
 #[derive(Debug, Clone, Copy)]
 pub struct Vec2 {
@@ -22,6 +22,11 @@ pub trait Magnitude{
 pub trait Normalize {
     type Output;
     fn normalize(self) -> Self::Output;
+}
+
+pub trait Angle {
+    type Output;
+    fn get_angle(self) -> Self::Output;
 }
 
 /// Vector Addition
@@ -48,7 +53,18 @@ impl Mul<f32> for Vec2 {
     }
 }
 
+/// Scalar Division
+impl Div<f32> for Vec2 {
+    type Output = Vec2;
+    fn div(self, rhs: f32) -> Self::Output {
+        Self {
+            x: self.x / rhs,
+            y: self.y / rhs,
+        }
+    }
+}
 
+/// Dot Product
 impl DotProduct for Vec2 {
     type Output = f32;
     fn dot(self, rhs: Self) -> Self::Output {
@@ -56,6 +72,7 @@ impl DotProduct for Vec2 {
     }
 }
 
+/// Vector Magnitude
 impl Magnitude for Vec2 {
     type Output = f32;
     fn magnitude(self) -> Self::Output {
@@ -63,6 +80,7 @@ impl Magnitude for Vec2 {
     }
 }
 
+/// Vector Normalization
 impl Normalize for Vec2 {
     type Output = Vec2;
     fn normalize(self) -> Self::Output {
@@ -72,6 +90,37 @@ impl Normalize for Vec2 {
         }
     }
 }
+
+impl Angle for Vec2 {
+    type Output = f32;
+
+    fn get_angle(self) -> Self::Output {
+        ((self.y / self.x).atan()).to_degrees()
+    }
+}
+
+
+
+
+
+
+
+impl Display for Vec2 {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "(x: {}, y: {})", self.x, self.y)
+    }
+    
+}
+
+impl PartialEq for Vec2 {
+    fn eq(&self, other: &Self) -> bool {
+        self.x == other.x && self.y == other.y
+    }
+    fn ne(&self, other: &Self) -> bool {
+        !self.eq(other)
+    }
+}
+
 
 
 

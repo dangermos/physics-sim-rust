@@ -9,12 +9,11 @@ async fn main() {
     let width = screen_width();
     let height = screen_height();
 
-    println!("Screen Width: {}\n Screen Height: {}", width, height);
-
+    println!("Screen Width: {}\nScreen Height: {}", width, height);
 
     let mut p1 = Particle2D::new(
         Vec2 {x: (width / 2.0) - 50.0, y: height / 2.0 },
-        Vec2 { x: 0.0, y: 0.0},
+        Vec2 { x: 2.0, y: 0.0},
         Vec2 { x: 0.0, y: 0.0 },
         20.0,
         10.0,
@@ -23,17 +22,16 @@ async fn main() {
 
     let mut p2 = Particle2D::new(
         Vec2 {x: (width / 2.0) + 30.0, y: height / 2.0 },
-        Vec2 { x: 0.0, y: 0.0},
+        Vec2 { x: -1.0, y: 0.0},
         Vec2 { x: 0.0, y: 0.0 },
         20.0,
         10.0,
 
     );
 
-    p1.set_velocity(Vec2 { x: 2.0, y: 3.0 });
-    p2.set_velocity(Vec2 { x: -4.0, y: -1.0 });
 
-    
+    println!("p1:\n{}\np2:\n{}", &p1, &p2);
+
 
     loop { // simulation loop
         let _delta = get_frame_time(); // FIXME
@@ -51,10 +49,10 @@ async fn main() {
         // draw_text("Hello World!", 50.0, 50.0, 14.0, WHITE);
         
         if p1.pos.x >= width || p1.pos.x <= 1.0  || p1.pos.y >= height || p1.pos.y <= 1.0{
-           p1.collision();
+           p1.rev_velocity();
         }
         if p2.pos.x >= width || p2.pos.x <= 1.0 || p2.pos.y >= height || p2.pos.y <= 1.0{
-            p2.collision();
+            p2.rev_velocity();
          }
 
         // Inefficient test
